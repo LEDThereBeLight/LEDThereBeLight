@@ -1,0 +1,458 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Heaps in Simple Language</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=bbdc542dbc">
+    <link rel="stylesheet" type="text/css" href="../assets/built/prism-onedark.css?v=bbdc542dbc">
+
+    <meta name="description" content="A heap is a data structure made for priority queues. Learn how to make heaps in Javascript and use them to solve real problems.">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Intuitive Coding">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Heaps in Simple Language">
+    <meta property="og:description" content="A heap is a data structure made for priority queues. Learn how to make heaps in Javascript and use them to solve real problems.">
+    <meta property="og:url" content="http://localhost:2369/heaps/">
+    <meta property="og:image" content="http://localhost:2369/content/images/2017/08/heap_compressed.jpg">
+    <meta property="article:tag" content="data structures">
+    <meta property="article:tag" content="heaps">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heaps in Simple Language">
+    <meta name="twitter:description" content="A heap is a data structure made for priority queues. Learn how to make heaps in Javascript and use them to solve real problems.">
+    <meta name="twitter:url" content="http://localhost:2369/heaps/">
+    <meta name="twitter:image" content="http://localhost:2369/content/images/2017/08/heap_compressed.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Zachary Bluedorn">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="data structures, heaps">
+    <meta property="og:image:width" content="1800">
+    <meta property="og:image:height" content="1013">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Intuitive Coding",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2369/content/images/2017/08/ic_icon-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Zachary Bluedorn",
+        "sameAs": []
+    },
+    "headline": "Heaps in Simple Language",
+    "url": "http://localhost:2369/heaps/",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2369/content/images/2017/08/heap_compressed.jpg",
+        "width": 1800,
+        "height": 1013
+    },
+    "keywords": "data structures, heaps",
+    "description": "Heaps are basically just arrays that are visualized as binary trees.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2369/"
+    }
+}
+    </script>
+
+    <script type="text/javascript" src="../public/ghost-sdk.min.js?v=bbdc542dbc"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "caed91e1fbe1"
+});
+</script>
+    <meta name="generator" content="Ghost 1.6">
+    <link rel="alternate" type="application/rss+xml" title="Intuitive Coding" href="../rss/index.html">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7CQuicksand%7CRoboto+Mono" rel="stylesheet">
+<style>
+    /* Main title formatting: "Intuitive Coding" */
+    .site-header:before {
+        background: none;
+    }
+    .site-title {
+        img {
+        	display: none;
+        }
+        font-family: Montserrat;
+  		text-shadow: -3px 2px 0 #3a50d9;
+    }
+    .site-description {
+        
+        border-radius: 2px;
+        padding: 15px 15px;
+        background: rgba(0,0,0,.5);
+        text-shadow: -1px 1px 2px rgba(15, 15, 15, 0.9);
+    }
+    
+    /* Prismjs adds backgrounds to tokens - this removes them */
+    .token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string {
+    	background: none;
+    }
+</style>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102491437-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body class="page-template page-heaps tag-data-structures tag-heaps">
+
+    <div class="site-wrapper">
+
+        
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../"><img src="../content/images/2017/08/ic_icon-1.png" alt="Intuitive Coding"></a>
+            <ul class="nav">
+    <li class="nav-blog" role="presentation"><a href="../tag/me/">Blog</a></li>
+    <li class="nav-data-structures" role="presentation"><a href="../data-structures/">Data Structures</a></li>
+    <li class="nav-algorithms" role="presentation"><a href="../algos/">Algorithms</a></li>
+</ul>
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="http://cloud.feedly.com/#subscription/feed/http://localhost:2369/rss/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-data-structures tag-heaps page ">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">Heaps</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2017/08/heap_compressed.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown"><p>A <strong>heap</strong> is a loosely ordered data structure that is used to support the priority queue methods <code>enqueue</code> and <code>dequeue</code>.</p>
+<p>In heap-speak, we say that the parent node <strong>dominates</strong> each of its children nodes. A parent dominates its children in a <strong>min-heap</strong> if its value is less than either of its children's values, and the opposite is true for a <strong>max-heap</strong>.</p>
+<p>The heap itself usually supports four methods:</p>
+<ol>
+<li><code>insert</code>: O(log n), add an item</li>
+<li><code>findMin</code>: O(1), return the minimum value</li>
+<li><code>extractMin</code>: O(log n), remove and return the smallest item</li>
+<li><code>size</code>: O(1), return the number of items</li>
+</ol>
+<h2 id="implementation">Implementation</h2>
+<ul>
+<li><a href="index.html#imperative">Imperative</a></li>
+<li><a href="index.html#functional">Functional</a></li>
+</ul>
+<h3 id="imperative">Imperative</h3>
+<p>In the imperative approach, we usually use arrays that can be visualized as trees. There's a lot going on inside a heap, so we're going to write the functions that work on the heap first, and then wrap them up into an object later.</p>
+<p>We'll start with a bare-bones heap-maker called <code>Heap()</code> that gives us an object with an array of items and a size. Later, we'll move all of our methods into this function once we understand how they all work.</p>
+<pre><code class="language-javascript">let Heap = () =&gt; {
+  return {
+    items: [undefined], // Heaps are 1-indexed
+    size: 0
+  }
+}
+</code></pre>
+<p>The key to visualizing an array as a tree is three functions that allow us to access the "parent" or "children" of any item in the array.</p>
+<pre><code class="language-javascript">let parent = (index) =&gt; {
+  if (index === 1) return undefined // We're at the root
+  else return Math.floor(index / 2)
+}
+
+let leftChild  = (index) =&gt; 2 * index
+let rightChild = (index) =&gt; 2 * index + 1
+</code></pre>
+<p>The benefit of representing a tree using an array instead of nodes with pointers is that the tree takes substantially less space, since every item only stores its value, and doesn't have to store references to other parts of the tree.</p>
+<p>The catch is that we can't allow holes in the tree, so we need to pack the values in to the left as far as we can. If we allowed trees of any structure, we would need an array of size <em>2ⁿ</em> to store it - hardly an improvement.</p>
+<h4 id="insertingintoaheap">Inserting into a heap</h4>
+<p>We insert items into a heap by adding them to the end of the array, and then <em>bubbling-up</em> the item to its proper position.</p>
+<p><code>bubbleUp</code> walks through the tree from the given index and swaps each item with its parent until each child is properly dominated by its parent. Since the height of the tree is <em>log n</em>, <code>bubbleUp</code> is O(log n).</p>
+<pre><code class="language-javascript">function heapInsert(item, heap) {
+  heap.size += 1
+  heap.items[heap.size] = item
+  bubbleUp(heap.items, heap.size)
+}
+
+function bubbleUp(items, index) {
+  if (!parent(index)) // At root of heap, nothing to do
+    return
+    
+  // '&gt;' for min-heap, '&lt;' for max-heap
+  if (items[parent(index)] &gt; items[index]) {
+    swap(items, parent(index), index)
+    bubbleUp(items, parent(index))
+  }
+}
+</code></pre>
+<p>Swap is a simple O(1) function.</p>
+<pre><code class="language-javascript">function swap(items, index1, index2) {
+  let temp = items[index1]
+  items[index1] = items[index2]
+  items[index2] = temp
+}
+</code></pre>
+<h4 id="removingfromaheap">Removing from a heap</h4>
+<p>Removing an item from a heap is just the opposite of inserting an item, with one trick. We need to keep the array packed to the left, so when we remove the first item, we need something to take its place as the root.</p>
+<p>We don't know yet what the new minimum of the heap will be, but we know it <em>must</em> be one of the root's direct children, because if it weren't, that would mean one of the root's child was dominated by <em>its</em> children, which defeats the whole purpose of the heap.</p>
+<p>So we'll move the last item in the array to the front, and then <code>bubbleDown</code> the item into its correct position, swapping it with its children until the heapiness (not a technical term) is restored.</p>
+<p><code>bubbleDown</code> walks down the tree of height <em>log n</em> from the root, which makes it an O(log n) operation.</p>
+<pre><code class="language-javascript">function extractMin(heap) {
+  if (heap.size &gt; 0) {
+    let min = heap.items[1]
+    heap.items[1] = heap.items[heap.size]
+    heap.size -= 1
+    bubbleDown(heap, 1)
+  
+    return min
+  }
+}
+
+function bubbleDown(heap, index) {
+  let { items, size } = heap,
+      smallestIndex = index
+  
+  if (leftChild(index) &lt;= size)
+    if (items[leftChild(index)] &lt; items[smallestIndex])
+      smallestIndex = leftChild(index)
+  
+  if (rightChild(index) &lt;= size)
+    if (items[rightChild(index)] &lt; items[smallestIndex])
+      smallestIndex = rightChild(index)
+  
+  if (smallestIndex !== index) {
+    swap(items, index, smallestIndex)
+    bubbleDown(heap, smallestIndex)
+  }
+}
+</code></pre>
+<h4 id="buildingaheap">Building a heap</h4>
+<p>We can build a heap from an array of items by simply inserting each array item into the heap. We walk through every item in the array for O(n) time and perform <code>heapInsert</code>, an O(log n) operation, on each item. This gives us O(n log n) heap creation.</p>
+<pre><code class="language-javascript">function makeHeap(items) {
+  let heap = Heap()
+  items.forEach(item =&gt; heapInsert(item, heap))
+  
+  return heap
+}
+
+let heap = makeHeap([5,4,3,2,1])
+</code></pre>
+<p>But if we think a little harder, we'll realize we're doing more work than we need to.</p>
+<p>The key observation is that every leaf of a heap already satisfies the heap property. They're heaps, albeit tiny ones.</p>
+<p>So we really only need to worry about swapping the <em>internal nodes</em> of the heap tree. And how many of those are there? If you draw out some examples, you'll realize that every <strong>complete</strong> binary tree has exactly <em>floor(length / 2)</em> internal nodes.</p>
+<p>So we just need to walk through the first <em>floor(length / 2)</em> items in the array.</p>
+<pre><code class="language-javascript">function makeHeap(items) {
+  let heap = Heap(),
+      internalNodeCount = Math.floor(items.length / 2)
+
+  heap.size = items.length
+  
+  // Remember that heaps are 1-indexed
+  for (let i = 0; i &lt; heap.size; i++)
+    heap.items[i + 1] = items[i]
+  
+  for (let i = internalNodeCount; i &gt;= 1; i--)
+    bubbleDown(heap, i)
+  
+  return heap
+}
+</code></pre>
+<p>This doesn't save us any time in big O notation - it's still an O(n log n) function - but it does about half the work as our first version.</p>
+<h4 id="thefinalheapobject">The final heap object</h4>
+<p>We now have a working heap, but we'll go one step further and finish off our implementation by wrapping each of the functions into a single object which will own all of the methods for working on the heap.</p>
+<pre><code class="language-javascript">let Heap = (array) =&gt; {
+  let items = [undefined],
+      size = 0
+      
+  // Public Functions
+  
+  let findMin = () =&gt; items[1]
+
+  function insert(item) {
+    size += 1
+    items[size] = item
+    bubbleUp(size)
+  }
+
+  function extractMin() {
+    if (size &gt; 0) {
+      let min = items[1]
+      items[1] = items[size]
+      size -= 1
+      bubbleDown(1)
+  
+      return min
+    }
+  }
+  
+  // Build heap from input
+
+  if (array) {
+    let internalNodeCount = Math.floor(array.length / 2)
+    size = array.length
+
+    for (let i = 0; i &lt; size; i++)
+      items[i + 1] = array[i]
+
+    for (let i = internalNodeCount; i &gt;= 1; i--)
+      bubbleDown(heap, i)
+  }
+  
+  // Private functions
+  
+  let parent = (index) =&gt; {
+    if (index === 1) return undefined
+    else return Math.floor(index / 2)
+  }
+
+  let leftChild  = (index) =&gt; 2 * index
+  let rightChild = (index) =&gt; 2 * index + 1
+  
+  function bubbleDown(index) {
+    let smallestIndex = index
+  
+    if (leftChild(index) &lt;= size)
+      if (items[leftChild(index)] &lt; items[smallestIndex])
+        smallestIndex = leftChild(index)
+  
+    if (rightChild(index) &lt;= size)
+      if (items[rightChild(index)] &lt; items[smallestIndex])
+        smallestIndex = rightChild(index)
+  
+    if (smallestIndex !== index) {
+      swap(index, smallestIndex)
+      bubbleDown(smallestIndex)
+    }
+  }
+
+  function bubbleUp(index) {
+    if (!parent(index))
+      return
+
+    if (items[parent(index)] &gt; items[index]) {
+      swap(items, parent(index), index)
+      bubbleUp(parent(index))
+    }
+  }
+  
+  function swap(index1, index2) {
+    let temp = items[index1]
+    items[index1] = items[index2]
+    items[index2] = temp
+  }
+  
+  
+  // Final heap object
+  return {
+    size: () =&gt; size,
+    insert,
+    findMin,
+    extractMin
+  }
+}
+</code></pre>
+<p>We can use our heap like this:</p>
+<pre><code class="language-javascript">let heap = Heap([5,4,3,2,1])
+heap.extractMin() // 1
+heap.extractMin() // 2
+heap.extractMin() // 3
+heap.extractMin() // 4
+heap.extractMin() // 5
+</code></pre>
+<h3 id="functional">Functional</h3>
+<p>Soon.</p>
+</div>
+            </section>
+            
+            <section class="post-full-comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = 'http://localhost:2369/heaps/';
+                        this.page.identifier = 'ghost-59973cc59fa1f20f15e4588f';
+                    };
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://intuitivecoding.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            </section>
+
+        </article>
+
+    </div>
+</main>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">Intuitive Coding</a> © 2017</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=bbdc542dbc"></script>
+    <script src="../assets/js/prism.js?v=bbdc542dbc"></script>
+
+
+    <script>
+$(function() {
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+});
+</script>
+
+
+    
+
+</body>

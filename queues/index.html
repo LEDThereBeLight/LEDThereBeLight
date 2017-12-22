@@ -1,0 +1,377 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Queues in Simple Language</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=bbdc542dbc">
+    <link rel="stylesheet" type="text/css" href="../assets/built/prism-onedark.css?v=bbdc542dbc">
+
+    <meta name="description" content="It's hard to learn to code. Don't make it harder with bad explanations. Learn why queues matter and how to use them like an expert.">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Intuitive Coding">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Queues in Simple Language">
+    <meta property="og:description" content="A queue is like a line of people waiting for the cashier at the store. Let's make one and then use it to solve some problems.">
+    <meta property="og:url" content="http://localhost:2369/queues/">
+    <meta property="og:image" content="http://localhost:2369/content/images/2017/08/queue_compressed.jpg">
+    <meta property="article:tag" content="data structures">
+    <meta property="article:tag" content="queues">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Queues in Simple Language">
+    <meta name="twitter:description" content="A queue is like a line of people waiting for the cashier at the store. Let's make one and then use it to solve some problems.">
+    <meta name="twitter:url" content="http://localhost:2369/queues/">
+    <meta name="twitter:image" content="http://localhost:2369/content/images/2017/08/queue_compressed.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Zachary Bluedorn">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="data structures, queues">
+    <meta property="og:image:width" content="1800">
+    <meta property="og:image:height" content="1200">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Intuitive Coding",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2369/content/images/2017/08/ic_icon-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Zachary Bluedorn",
+        "sameAs": []
+    },
+    "headline": "Queues in Simple Language",
+    "url": "http://localhost:2369/queues/",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2369/content/images/2017/08/queue_compressed.jpg",
+        "width": 1800,
+        "height": 1200
+    },
+    "keywords": "data structures, queues",
+    "description": "A queue is like a line of people waiting for the cashier at the store. Let&#x27;s make one and then use it to solve some problems.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2369/"
+    }
+}
+    </script>
+
+    <script type="text/javascript" src="../public/ghost-sdk.min.js?v=bbdc542dbc"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "caed91e1fbe1"
+});
+</script>
+    <meta name="generator" content="Ghost 1.6">
+    <link rel="alternate" type="application/rss+xml" title="Intuitive Coding" href="../rss/index.html">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7CQuicksand%7CRoboto+Mono" rel="stylesheet">
+<style>
+    /* Main title formatting: "Intuitive Coding" */
+    .site-header:before {
+        background: none;
+    }
+    .site-title {
+        img {
+        	display: none;
+        }
+        font-family: Montserrat;
+  		text-shadow: -3px 2px 0 #3a50d9;
+    }
+    .site-description {
+        
+        border-radius: 2px;
+        padding: 15px 15px;
+        background: rgba(0,0,0,.5);
+        text-shadow: -1px 1px 2px rgba(15, 15, 15, 0.9);
+    }
+    
+    /* Prismjs adds backgrounds to tokens - this removes them */
+    .token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string {
+    	background: none;
+    }
+</style>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102491437-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body class="page-template page-queues tag-data-structures tag-queues">
+
+    <div class="site-wrapper">
+
+        
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../"><img src="../content/images/2017/08/ic_icon-1.png" alt="Intuitive Coding"></a>
+            <ul class="nav">
+    <li class="nav-blog" role="presentation"><a href="../tag/me/">Blog</a></li>
+    <li class="nav-data-structures" role="presentation"><a href="../data-structures/">Data Structures</a></li>
+    <li class="nav-algorithms" role="presentation"><a href="../algos/">Algorithms</a></li>
+</ul>
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="http://cloud.feedly.com/#subscription/feed/http://localhost:2369/rss/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-data-structures tag-queues page ">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">Queues</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2017/08/queue_compressed.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown"><p>A queue is like a line of people waiting for the cashier at the store. Queues are a First In, First Out (FIFO) container, which means the most recently added item has to wait for all of the other items in front of it before it can exit.</p>
+<p>Queues have at least two methods:</p>
+<ol>
+<li><code>enqueue</code>: O(1), add an item to the back</li>
+<li><code>dequeue</code>: O(1), remove an item from the front</li>
+</ol>
+<p>And they may have additional methods:</p>
+<ol>
+<li><code>isEmpty</code>: O(1), returns <code>true</code> if no items are in the stack</li>
+<li><code>peek</code>: O(1), returns the item at the top of the stack without removing it</li>
+</ol>
+<h1 id="implementation">Implementation</h1>
+<p>Queues are usually implemented with either arrays or linked lists.</p>
+<h2 id="objectoriented">Object Oriented</h2>
+<p>We'll use an array for the object oriented implementation. The queue object will own all of the methods that act on it.</p>
+<pre><code class="language-javascript">function Queue() {
+  let items = [],
+      head = 0,
+      tail = -1
+  
+  function enqueue (item) {
+    tail += 1
+    items[tail] = item
+  }
+  
+  function dequeue () {
+    if (tail &gt;= head) {
+      let item = items[head]
+      items[head] = undefined
+      head += 1
+      
+      return item
+    }
+  }
+  
+  let peek = () =&gt; items[head]
+  
+  let isEmpty = () =&gt; tail &lt; head
+  
+  return {
+    enqueue,
+    dequeue,
+    peek,
+    isEmpty
+  }
+}
+</code></pre>
+<h2 id="functional">Functional</h2>
+<p>We'll use a linked list for the functional implementation. Instead of the object oriented approach where we create a single object that houses all of the methods to work with it, we write functions that take a queue and return a new queue.</p>
+<p>We'd like to be able to keep a single list of items in our queue, something like this:</p>
+<pre><code class="language-javascript">let Queue = (items) =&gt; {
+  return {
+    items
+  }
+}
+
+let enqueue = (item, queue) =&gt; 
+  Queue(append(queue.items, item))
+
+let dequeue = (queue) =&gt; 
+  [queue.items.head,
+   Queue(queue.items.tail)]
+
+let peek = (queue) =&gt;
+  queue.items.head
+
+// Where append adds an item to the end of the list
+let append = (list1, list2) =&gt; {
+  if (!list1) return list2
+  else return cons(list1.head, 
+                   append(list1.tail, 
+                          list2))
+}
+</code></pre>
+<p>The trouble is that our <code>enqueue</code> function adds to the end of a linked list, which takes O(n) time instead of the O(1) that we want.</p>
+<p>The solution is to make our queues use <em>two</em> lists instead of one. We'll have an <code>inbox</code> list, and an <code>outbox</code> list. The <code>enqueue</code> and <code>dequeue</code> strategy goes like this:</p>
+<pre><code class="language-javascript">// enqueue(item): 
+//   Add the item to the front of inbox
+// dequeue(): 
+//   If outbox is empty, reverse the items of inbox // put them in outbox
+//   else return the first item of outbox
+</code></pre>
+<p>Why does this make <code>dequeue</code> constant time? Think about what happens in each case. If <code>outbox</code> has an item, we just return it, which is obviously O(1). Otherwise, we reverse <code>inbox</code>, which takes O(n) time since we need to visit every item in the list. But this O(n) investment allows us to now <code>dequeue</code> all <em>n</em> items in constant time.</p>
+<p>If we never <code>dequeue</code> all of the items, we'll have wasted the time we invested, but in the grand scheme of things we can consider each <code>dequeue</code> operation as O(1) time without losing much sleep.</p>
+<p>This idea is called <a href="https://brilliant.org/wiki/amortized-analysis/">amortized analysis</a>, and is a core concept in algorithm analysis.</p>
+<p>But let's get back to our queue. We'll change our functions to use our <code>inbox</code> and <code>outbox</code> idea.</p>
+<pre><code class="language-javascript">let Queue = (inbox, outbox) =&gt; {
+  return {
+    inbox,
+    outbox
+  }
+}
+
+let enqueue = (item, queue) =&gt;
+  Queue(cons(item, 
+             queue.inbox), 
+        queue.outbox)
+
+let dequeue = (queue) =&gt; {
+  if (!queue.outbox) 
+    return dequeue(Queue(undefined, 
+                         reverse(queue.inbox)))
+  else 
+    return [queue.outbox.head, 
+            Queue(queue.inbox, 
+                  queue.outbox.tail)]
+}
+</code></pre>
+<p>Now it works... as long as we don't try to <code>dequeue</code> an empty queue. So let's handle empty queues and change our <code>peek</code> function to work on our new queue.</p>
+<p>We'll go one step further though. In order for <code>peek</code> to work correctly, it's going to need to do the same sort of messing around with the <code>inbox</code> and <code>outbox</code> that <code>dequeue</code> currently does. So we can actually move all that logic inside the <code>peek</code> function, and then call <code>peek</code> from our <code>dequeue</code> function so we're only doing it in one place.</p>
+<p>Here's what we end up with.</p>
+<pre><code class="language-javascript">let Queue = (inbox, outbox) =&gt; {
+  return {
+    inbox,
+    outbox
+  }
+}
+
+let enqueue = (item, queue) =&gt;
+  Queue(cons(item, 
+             queue.inbox), 
+        queue.outbox)
+
+let dequeue = (queue) =&gt; {
+  let [top, newQueue] = peek(queue)
+  
+  if (!top) return [top, queue]
+  else return [top, Queue(queue.inbox, 
+                          queue.outbox.tail)]
+}
+
+let peek = (queue) =&gt; {
+  if (!queue.inbox &amp;&amp; !queue.outbox) 
+    return [undefined, Queue()]
+  
+  if (!queue.outbox)
+    return peek(Queue(undefined, 
+                      reverse(queue.inbox)))
+  
+  return [queue.outbox.head, queue]
+}
+</code></pre>
+<p>We can use our queue like this:</p>
+<pre><code class="language-javascript">let queue = Queue()
+let queue1 = enqueue(1, queue)
+let queue2 = enqueue(2, queue1)
+console.log(peek(queue2))
+console.log(dequeue(queue2))
+</code></pre>
+<br>
+Are you ready for a break yet?</div>
+            </section>
+            
+            <section class="post-full-comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = 'http://localhost:2369/queues/';
+                        this.page.identifier = 'ghost-59973cc59fa1f20f15e4588e';
+                    };
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://intuitivecoding.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            </section>
+
+        </article>
+
+    </div>
+</main>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">Intuitive Coding</a> © 2017</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=bbdc542dbc"></script>
+    <script src="../assets/js/prism.js?v=bbdc542dbc"></script>
+
+
+    <script>
+$(function() {
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+});
+</script>
+
+
+    
+
+</body>

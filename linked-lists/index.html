@@ -1,0 +1,289 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Linked Lists in Simple Language</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css?v=bbdc542dbc">
+    <link rel="stylesheet" type="text/css" href="../assets/built/prism-onedark.css?v=bbdc542dbc">
+
+    <meta name="description" content="It's hard to learn to code. Don't make it harder with bad explanations. Learn why linked lists matter and how to use them like an expert.">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Intuitive Coding">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Linked Lists in Simple Language">
+    <meta property="og:description" content="A linked list is like a conga line, where every item holds on to the next one in the list. Linked lists are fundamental in every functional programming language.">
+    <meta property="og:url" content="http://localhost:2369/linked-lists/">
+    <meta property="og:image" content="http://localhost:2369/content/images/2017/08/linked_list_1650.jpg">
+    <meta property="article:tag" content="data structures">
+    <meta property="article:tag" content="linked lists">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linked Lists in Simple Language">
+    <meta name="twitter:description" content="A linked list is like a conga line, where every item holds on to the next one in the list. Linked lists are fundamental in every functional programming language.">
+    <meta name="twitter:url" content="http://localhost:2369/linked-lists/">
+    <meta name="twitter:image" content="http://localhost:2369/content/images/2017/08/linked_list_1650.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Zachary Bluedorn">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="data structures, linked lists">
+    <meta property="og:image:width" content="2556">
+    <meta property="og:image:height" content="1440">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Intuitive Coding",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2369/content/images/2017/08/ic_icon-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Zachary Bluedorn",
+        "sameAs": []
+    },
+    "headline": "Linked Lists in Simple Language",
+    "url": "http://localhost:2369/linked-lists/",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2369/content/images/2017/08/linked_list_1650.jpg",
+        "width": 2556,
+        "height": 1440
+    },
+    "keywords": "data structures, linked lists",
+    "description": "A linked list is like a conga line, where every item holds on to the next one in the list. Linked lists are fundamental in every functional programming language.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2369/"
+    }
+}
+    </script>
+
+    <script type="text/javascript" src="../public/ghost-sdk.min.js?v=bbdc542dbc"></script>
+<script type="text/javascript">
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "caed91e1fbe1"
+});
+</script>
+    <meta name="generator" content="Ghost 1.6">
+    <link rel="alternate" type="application/rss+xml" title="Intuitive Coding" href="../rss/index.html">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7CQuicksand%7CRoboto+Mono" rel="stylesheet">
+<style>
+    /* Main title formatting: "Intuitive Coding" */
+    .site-header:before {
+        background: none;
+    }
+    .site-title {
+        img {
+        	display: none;
+        }
+        font-family: Montserrat;
+  		text-shadow: -3px 2px 0 #3a50d9;
+    }
+    .site-description {
+        
+        border-radius: 2px;
+        padding: 15px 15px;
+        background: rgba(0,0,0,.5);
+        text-shadow: -1px 1px 2px rgba(15, 15, 15, 0.9);
+    }
+    
+    /* Prismjs adds backgrounds to tokens - this removes them */
+    .token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string {
+    	background: none;
+    }
+</style>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-102491437-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body class="page-template page-linked-lists tag-data-structures tag-linked-lists">
+
+    <div class="site-wrapper">
+
+        
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../"><img src="../content/images/2017/08/ic_icon-1.png" alt="Intuitive Coding"></a>
+            <ul class="nav">
+    <li class="nav-blog" role="presentation"><a href="../tag/me/">Blog</a></li>
+    <li class="nav-data-structures" role="presentation"><a href="../data-structures/">Data Structures</a></li>
+    <li class="nav-algorithms" role="presentation"><a href="../algos/">Algorithms</a></li>
+</ul>
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="http://cloud.feedly.com/#subscription/feed/http://localhost:2369/rss/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-data-structures tag-linked-lists page ">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">Linked Lists</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(../content/images/2017/08/linked_list_1650.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown"><p>A linked list is like a conga line, where every item holds on to the next one in the list. The two most common types of linked lists are singly linked lists. A singly linked list is one where both hands are on the person in front of you, and a doubly linked list is one where one hand is on the person in front of you, and one on the person behind you.</p>
+<h4 id="singlylinkedlist">Singly Linked List</h4>
+<p>Singly linked lists are built from pairs of pointers. The first pointer points to an item, and the second pointer points to the next pair in the list.</p>
+<p>Note how the second part of the last pair points to <code>undefined</code>, which tells us we're at the end of the list.</p>
+<h4 id="doublylinkedlist">Doubly Linked List</h4>
+<p>Doubly linked lists are like singly linked lists, but they have an extra pointer to the previous item in the list.</p>
+<h3 id="makingalist">Making a list</h3>
+<p>Let's make a singly linked list, the most common type of linked list.</p>
+<p>Lists are built from nodes using the <code>cons</code> function, which is short for "construct."</p>
+<pre><code class="language-javascript">function cons (head, tail) {
+  return {
+    head,
+    tail
+  }
+}
+</code></pre>
+<p>We can <code>cons</code>truct lists of any length:</p>
+<pre><code class="language-javascript">let EMPTY = undefined
+let list = cons(1,
+                cons(2,
+                     cons(3,
+                          cons(4,
+                               cons(5, 
+                                    EMPTY)))))
+// list = { head: 1, tail:
+//          { head: 2, tail: 
+//            { head: 3, tail: 
+//              { head: 4, tail: 
+//                { head: 5, tail: 
+//                  undefined }}}}}                                    
+</code></pre>
+<p>We can build lists directly from other data structures, too. Here's how we might make a list from an array of items.</p>
+<pre><code class="language-javascript">let array = [1, 2, 3, 4, 5]
+
+let linkedList = array.reduceRight(
+  (acc, curr) =&gt; cons(curr, acc), 
+  EMPTY
+)
+</code></pre>
+<h2 id="workingwithlinkedlists">Working with Linked Lists</h2>
+<p>Soon.</p>
+<pre><code class="language-javascript">/*
+let isEmpty = (list) =&gt; list === EMPTY
+let head = (list) =&gt; {
+  if (isEmpty(list))
+    return console.log('Error - head of empty list')
+  else
+    return list.head
+}
+let tail = (list) =&gt; {
+  if (isEmpty(list))
+    return console.log('Error - tail of empty list')
+  else
+    return list.tail
+}
+
+foldl, foldr
+map
+reverse
+append
+*/
+</code></pre>
+</div>
+            </section>
+            
+            <section class="post-full-comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = 'http://localhost:2369/linked-lists/';
+                        this.page.identifier = 'ghost-59973cc59fa1f20f15e45889';
+                    };
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://intuitivecoding.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            </section>
+
+        </article>
+
+    </div>
+</main>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">Intuitive Coding</a> © 2017</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=bbdc542dbc"></script>
+    <script src="../assets/js/prism.js?v=bbdc542dbc"></script>
+
+
+    <script>
+$(function() {
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+});
+</script>
+
+
+    
+
+</body>
